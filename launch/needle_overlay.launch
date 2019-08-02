@@ -6,9 +6,7 @@
    <node pkg="ros_igtl_bridge" type="ros_igtl_bridge_node" name="ros_igtl_bridge_node" output="screen">
    </node>
 <!-- start the test -->
-   <param name="test_pd" value="$(find ros_igtl_bridge)/testing/model.vtk" type="str"/>
-   <param name="test_oct" value="$(find ros_igtl_bridge)/testing/oct_raw.cache" type="str"/>
-   <node pkg="ros_igtl_bridge" type="ros_igtl_bridge_test" name="ros_igtl_bridge_test" output="screen">
+   <node pkg="ros_igtl_bridge" type="ros_igtl_bridge_needle" name="needle_overlay_server" output="screen">
    </node>
 </launch>
 

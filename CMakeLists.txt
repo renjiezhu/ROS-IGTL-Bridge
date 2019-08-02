@@ -143,13 +143,14 @@ add_library(${PROJECT_NAME}_lib
   src/rib_converter_transform.cpp
   src/rib_converter_image.cpp
   src/ros_igtl_bridge.cpp
+  src/needle_overlay.cpp
  )
 
 ## Declare a C++ executable
 # add_executable(ros_igtl_bridge_node src/ros_igtl_bridge_node.cpp)
 add_executable(${PROJECT_NAME}_node src/ros_igtl_bridge.cpp src/main.cpp)
 add_executable(${PROJECT_NAME}_test testing/ros_igtl_test.cpp testing/main_test.cpp)
-
+add_executable(${PROJECT_NAME}_needle src/needle_overlay.cpp)
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
@@ -157,6 +158,7 @@ add_executable(${PROJECT_NAME}_test testing/ros_igtl_test.cpp testing/main_test.
 
 add_dependencies(${PROJECT_NAME}_lib ${PROJECT_NAME}_generate_messages_cpp)
 add_dependencies(${PROJECT_NAME}_test ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(${PROJECT_NAME}_needle ${PROJECT_NAME}_generate_messages_cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -178,6 +180,10 @@ target_link_libraries(${PROJECT_NAME}_test ${VTK_LIBRARIES})
 
 ## TODO: Remove the dependency on OpenIGTLink
 target_link_libraries(${PROJECT_NAME}_test OpenIGTLink)
+
+target_link_libraries(${PROJECT_NAME}_needle ${catkin_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}_needle OpenIGTLink)
+target_link_libraries(${PROJECT_NAME}_needle ${PROJECT_NAME}_lib)
 
 
 #############

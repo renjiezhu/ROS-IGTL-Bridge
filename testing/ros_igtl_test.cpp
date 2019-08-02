@@ -217,25 +217,25 @@ void ROS_IGTL_Test::test_sending()
 	
   // -----------------------------------------------------------------
   // send PD
-  std::string test_pd;
-  if(nh->getParam("/test_pd",test_pd))
-    {
-      vtkSmartPointer<vtkPolyData> polydata;
-      vtkSmartPointer<vtkPolyDataReader> polydata_reader = vtkSmartPointer<vtkPolyDataReader>::New();
-      polydata_reader->SetFileName(test_pd.c_str());
-      polydata_reader->Update();
-      polydata = polydata_reader->GetOutput();
+  // std::string test_pd;
+  // if(nh->getParam("/test_pd",test_pd))
+  //   {
+  //     vtkSmartPointer<vtkPolyData> polydata;
+  //     vtkSmartPointer<vtkPolyDataReader> polydata_reader = vtkSmartPointer<vtkPolyDataReader>::New();
+  //     polydata_reader->SetFileName(test_pd.c_str());
+  //     polydata_reader->Update();
+  //     polydata = polydata_reader->GetOutput();
 
-      // TODO: Remove the dependency on ROS_IGTL_Bridge::PolyDataToMs()
-      ros_igtl_bridge::igtlpolydata::Ptr polydata_msg (new ros_igtl_bridge::igtlpolydata());
-      *polydata_msg =  polyDataToMsg("ROS_IGTL_Test_PolyData",polydata);
-      polydata_pub.publish(*polydata_msg);
-    }
-  std::string test_oct;
-  if(nh->getParam("/test_oct",test_oct))
-    {
-      //	PublishOCTScan(test_oct);
-    }
+  //     // TODO: Remove the dependency on ROS_IGTL_Bridge::PolyDataToMs()
+  //     ros_igtl_bridge::igtlpolydata::Ptr polydata_msg (new ros_igtl_bridge::igtlpolydata());
+  //     *polydata_msg =  polyDataToMsg("ROS_IGTL_Test_PolyData",polydata);
+  //     polydata_pub.publish(*polydata_msg);
+  //   }
+  // std::string test_oct;
+  // if(nh->getParam("/test_oct",test_oct))
+  //   {
+  //     //	PublishOCTScan(test_oct);
+  //   }
 }
 
 //----------------------------------------------------------------------
